@@ -23,6 +23,12 @@ allprojects {
     repositories {
         mavenCentral()
     }
+    val springCloudVersion by extra("2025.1.1")
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
+        }
+    }
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-h2console")
@@ -40,6 +46,7 @@ allprojects {
         testCompileOnly("org.projectlombok:lombok")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
         testAnnotationProcessor("org.projectlombok:lombok")
+        implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     }
 
     tasks.withType<Test> {

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: order-service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      retries: 1
+      acks: -1
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+      properties:
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
