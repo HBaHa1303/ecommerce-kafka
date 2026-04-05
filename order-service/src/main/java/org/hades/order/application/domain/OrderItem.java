@@ -1,4 +1,4 @@
-package org.hades.order.application;
+package org.hades.order.application.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ public class OrderItem {
     Long price;
     Integer quantity;
 
-    public static OrderItem create(Long id, Long productId, Long price, Integer quantity) {
-        return new OrderItem(id, productId, price, quantity);
+    public static OrderItem create(Long productId, Long price, Integer quantity) {
+        return new OrderItem(null, productId, price, quantity);
     }
 }

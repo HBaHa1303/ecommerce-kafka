@@ -1,7 +1,7 @@
 package org.hades.order.presentation;
 
 import lombok.AllArgsConstructor;
-import org.hades.order.application.CreateOrderUseCase;
+import org.hades.order.application.usecases.CreateOrderUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

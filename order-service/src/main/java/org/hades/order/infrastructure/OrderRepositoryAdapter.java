@@ -1,7 +1,7 @@
 package org.hades.order.infrastructure;
 
 import lombok.AllArgsConstructor;
-import org.hades.order.application.OrderRepository;
+import org.hades.order.application.port.out.OrderRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

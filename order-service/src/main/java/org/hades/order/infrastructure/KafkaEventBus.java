@@ -1,7 +1,7 @@
 package org.hades.order.infrastructure;
 
 import lombok.AllArgsConstructor;
-import org.hades.order.application.EventBus;
+import org.hades.order.application.port.out.EventBus;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 

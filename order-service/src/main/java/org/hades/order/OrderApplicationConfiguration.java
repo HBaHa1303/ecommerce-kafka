@@ -1,9 +1,10 @@
 package org.hades.order;
 
 import org.apache.kafka.clients.admin.NewTopic;
-import org.hades.order.application.EventBus;
-import org.hades.order.application.OrderRepository;
-import org.hades.order.application.CreateOrderUseCase;
+import org.hades.order.application.port.out.EventBus;
+import org.hades.order.application.port.out.OrderRepository;
+import org.hades.order.application.port.out.ProductClient;
+import org.hades.order.application.usecases.CreateOrderUseCase;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +13,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OrderApplicationConfiguration {
     @Bean
-    public CreateOrderUseCase orderUseCase(EventBus eventBus, OrderRepository orderRepository) {
-        return new CreateOrderUseCase(eventBus, orderRepository);
+    public CreateOrderUseCase orderUseCase(EventBus eventBus, OrderRepository orderRepository,
+            ProductClient productClient) {
+        return new CreateOrderUseCase(eventBus, orderRepository, productClient);
     }
 
     @Bean

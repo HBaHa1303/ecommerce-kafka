@@ -1,4 +1,4 @@
-package org.hades.order.application;
+package org.hades.order.application.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
