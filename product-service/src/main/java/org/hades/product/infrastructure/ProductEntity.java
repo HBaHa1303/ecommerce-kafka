@@ -11,7 +11,7 @@ import lombok.Setter;
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
-    Long price;
+    private Long id;
+    private String name;
+    private Long price;
 }

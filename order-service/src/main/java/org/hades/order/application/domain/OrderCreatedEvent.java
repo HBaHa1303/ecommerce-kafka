@@ -1,27 +1,23 @@
 package org.hades.order.application.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-@AllArgsConstructor
-public class OrderCreatedEvent {
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class OrderCreatedEvent implements DomainEvent{
     private Long id;
     private Long total;
     private List<OrderItemCreatedEvent> orderItems;
 
-    public OrderCreatedEvent(Order order) {
-        this.id = order.getId();
-        this.total = order.getTotal();
-        this.orderItems = order.getOrderItems()
+    public static OrderCreatedEvent from (Order order) {
+        List<OrderItemCreatedEvent> orderItems = order.getOrderItems()
                 .stream()
-                .map(oi -> new OrderItemCreatedEvent(
-                        oi.getId(),
-                        oi.getProductId(),
-                        oi.getPrice(),
-                        oi.getQuantity()))
+                .map(OrderItemCreatedEvent::from)
                 .toList();
+        return new OrderCreatedEvent(order.getId(), order.getTotal(), orderItems);
     }
 }

@@ -46,6 +46,6 @@ public class CreateOrderUseCase {
         Order order = Order.create(orderItems);
         orderRepository.save(order);
 
-        eventBus.publish(new OrderCreatedEvent(order));
+        order.pullEvents().forEach(eventBus::publish);
     }
 }
