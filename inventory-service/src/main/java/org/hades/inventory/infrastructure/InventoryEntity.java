@@ -15,4 +15,7 @@ public class InventoryEntity {
 
     @Column(nullable = false)
     Long productId;
+
+    @Column(nullable = false)
+    Long quantity;
 }

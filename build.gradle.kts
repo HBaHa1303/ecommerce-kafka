@@ -47,6 +47,8 @@ allprojects {
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
         testAnnotationProcessor("org.projectlombok:lombok")
         implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+        implementation ("org.mapstruct:mapstruct:1.6.3")
+        annotationProcessor ("org.mapstruct:mapstruct-processor:1.6.3")
     }
 
     tasks.withType<Test> {

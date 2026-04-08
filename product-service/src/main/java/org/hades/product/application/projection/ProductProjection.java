@@ -1,7 +1,7 @@
 package org.hades.product.application.projection;
 
-public class ProductProjection {
-    private Long id;
-    private String name;
-    private Long price;
-}
+public record ProductProjection (
+        Long id,
+        String name,
+        Long price
+) {}

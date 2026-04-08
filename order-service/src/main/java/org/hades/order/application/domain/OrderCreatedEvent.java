@@ -3,10 +3,12 @@ package org.hades.order.application.domain;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.hades.order.application.KafkaTopic;
 
 import java.util.List;
 
 @Getter
+@KafkaTopic("order.events")
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class OrderCreatedEvent implements DomainEvent{
     private Long id;
