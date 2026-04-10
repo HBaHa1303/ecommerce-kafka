@@ -14,6 +14,6 @@ public class ProductClientAdapter implements ProductClient {
 
     @Override
     public List<ProductResponse> findAllByIds(List<Long> list) {
-        return List.of();
+        return productFeignClient.getProductsByIds(list);
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class OrderCreatedListener {
     private final ReverseStockCommandHandler reverseStockCommandHandler;
 
-    @KafkaListener(topics = "order.events")
+    @KafkaListener(topics = "order.events", groupId = "order-group")
     public void listen(OrderCreatedEvent event) {
         reverseStockCommandHandler.reverseStock(event);
     }

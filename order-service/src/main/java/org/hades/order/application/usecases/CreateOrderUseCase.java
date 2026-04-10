@@ -10,6 +10,7 @@ import org.hades.order.application.port.out.EventBus;
 import org.hades.order.application.port.out.ProductClient;
 import org.hades.order.application.port.out.ProductResponse;
 import org.hades.order.application.port.out.OrderRepository;
+import org.hades.order.presentation.CreateOrderItemRequest;
 import org.hades.order.presentation.CreateOrderRequest;
 
 import java.util.List;
@@ -26,12 +27,11 @@ public class CreateOrderUseCase {
 
     public void createOrder(CreateOrderRequest request) {
         List<ProductResponse> response = productClient.findAllByIds(
-                request.getOrderItems().stream().map(OrderItemCreatedEvent::getProductId
-        ).toList());
+                request.getOrderItems().stream().map(CreateOrderItemRequest::getProductId).toList());
 
         Map<Long, Long> mapProduct = request.getOrderItems().stream().map(oi ->
                         response.stream()
-                                .filter(p -> p.id().equals(oi.getId()))
+                                .filter(p -> p.id().equals(oi.getProductId()))
                                 .findFirst()
                                 .orElseThrow(() -> new NotFoundException("Product id " + oi.getProductId() + " is not exists")))
                 .collect(Collectors.toMap(ProductResponse::id, ProductResponse::price));
@@ -41,7 +41,7 @@ public class CreateOrderUseCase {
                 .map(oi ->
                         OrderItem.create(
                                 oi.getProductId(),
-                                mapProduct.get(oi.getId()),
+                                mapProduct.get(oi.getProductId()),
                                 oi.getQuantity())).toList();
         Order order = Order.create(orderItems);
         orderRepository.save(order);

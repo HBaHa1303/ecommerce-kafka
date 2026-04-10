@@ -3,10 +3,7 @@ package org.hades.order.presentation;
 import lombok.AllArgsConstructor;
 import org.hades.order.application.usecases.CreateOrderUseCase;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/orders")
@@ -16,7 +13,7 @@ public class OrderController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void createOrder (CreateOrderRequest request) {
+    public void createOrder (@RequestBody CreateOrderRequest request) {
         createOrderUseCase.createOrder(request);
     }
 }
